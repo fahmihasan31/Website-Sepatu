@@ -25,9 +25,9 @@ module.exports = {
       const product = await Product.create({ name, description, price, stock, image });
       res.status(201).json(product);
     } catch (error) {
-      res.status(400).json({ 
+      res.status(400).json({
         code: 400,
-        message: error.message 
+        message: error.message
       });
     }
   },
@@ -37,9 +37,9 @@ module.exports = {
       const products = await Product.findAll();
       res.json(products);
     } catch (error) {
-      res.status(400).json({ 
+      res.status(400).json({
         code: 400,
-        message: error.message 
+        message: error.message
       });
     }
   },
@@ -47,15 +47,15 @@ module.exports = {
   async getProduct(req, res) {
     try {
       const product = await Product.findByPk(req.params.id);
-      if (!product) return res.status(404).json({ 
+      if (!product) return res.status(404).json({
         code: 404,
-        message: 'Product not found' 
+        message: 'Product not found'
       });
       res.json(product);
     } catch (error) {
-      res.status(400).json({ 
+      res.status(400).json({
         code: 400,
-        message: error.message 
+        message: error.message
       });
     }
   },
@@ -66,9 +66,9 @@ module.exports = {
 
     try {
       const product = await Product.findByPk(req.params.id);
-      if (!product) return res.status(404).json({ 
+      if (!product) return res.status(404).json({
         code: 404,
-        message: 'Product not found' 
+        message: 'Product not found'
       });
 
       product.name = name || product.name;
@@ -80,9 +80,9 @@ module.exports = {
       await product.save();
       res.json(product);
     } catch (error) {
-      res.status(400).json({ 
+      res.status(400).json({
         code: 400,
-        message: error.message 
+        message: error.message
       });
     }
   },
@@ -90,20 +90,20 @@ module.exports = {
   async deleteProduct(req, res) {
     try {
       const product = await Product.findByPk(req.params.id);
-      if (!product) return res.status(404).json({ 
+      if (!product) return res.status(404).json({
         code: 404,
-        message: 'Product not found' 
+        message: 'Product not found'
       });
 
       await product.destroy();
       res.status(200).json({
         code: 200,
-        message: 'Product data deleted' 
+        message: 'Product data deleted'
       });
     } catch (error) {
-      res.status(400).json({ 
+      res.status(400).json({
         code: 400,
-        message: error.message 
+        message: error.message
       });
     }
   }
